@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://gfipm.net/2014/shibboleth/idp/authy"
+            xmlns="http://gfipm.net/2014/shibboleth/idp/authy"
+            xmlns:ph="urn:mace:shibboleth:2.0:idp:profile-handler"
+            elementFormDefault="qualified">
+
+  <xsd:import namespace="urn:mace:shibboleth:2.0:idp:profile-handler"
+              schemaLocation="classpath:/schema/shibboleth-2.0-idp-profile-handler.xsd" />
+
+    <xsd:complexType name="AuthyTwoFactorLogin">
+        <xsd:complexContent>
+            <xsd:extension base="ph:LoginHandlerType">
+                <xsd:attribute name="jaasConfigurationLocation" type="xsd:anyURI">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Location of the JAAS configuration. If this attribute is used it will usually contain a file
+                            URL to a configuration on the local filesystem. However, this attribute need not be used and
+                            this information can be set within the VM in any manner supported by the JVM/container
+                            implementation.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="authyApiURL" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                           The API URL to use for Authy.  Typically http://sandbox-api.authy.com for testing and 
+                           https://api.authy.com for production.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="apikey" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                          API Key from Authy.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="name" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                          The Authy Application Name.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+
+</xsd:schema>
