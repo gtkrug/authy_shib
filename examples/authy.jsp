@@ -15,7 +15,7 @@
 
   <body id="homepage">
     <img src="<%= request.getContextPath()%>/images/logo.jpg" alt="Shibboleth Logo"/>
-    <h1>Duo Authentication</h1>
+    <h1>Authy 2nd Factor Authentication</h1>
 
     <p>This second-factor authentication page is an example and should be customized.  Refer to the 
        <a href="https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAuthUserPassLoginPage" target="_blank"> documentation</a>.
