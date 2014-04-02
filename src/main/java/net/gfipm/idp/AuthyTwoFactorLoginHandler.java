@@ -70,12 +70,12 @@ public class AuthyTwoFactorLoginHandler extends AbstractLoginHandler {
      * @param nameIn    Authy Application Name
      * @param apiHostIn Authy Host
      */
-    public AuthyTwoFactorLoginHandler(String servletPath, String apikeyIn, String nameIn, String apiHostIn) {
+    public AuthyTwoFactorLoginHandler(String servletPath, String apiKeyIn, String nameIn, String apiHostIn) {
         super();
         setSupportsPassive(false);
         setSupportsForceAuthentication(true);
         authenticationServletPath = servletPath;
-        apikey  = apikeyIn;
+        apikey  = apiKeyIn;
         name    = nameIn;
         apihost = apiHostIn;
     }

@@ -71,9 +71,9 @@ public class AuthyTwoFactorLoginHandlerBeanDefinitionParser extends AbstractLogi
         log.debug("Setting JAAS configuration file to: {}", jaasConfigurationURL);
         System.setProperty("java.security.auth.login.config", jaasConfigurationURL);
 
-        String apikey = DatatypeHelper.safeTrim(config.getAttributeNS(null, "apikey"));
+        String apikey = DatatypeHelper.safeTrim(config.getAttributeNS(null, "apiKey"));
         log.debug("Setting Authy API Key to: {}", apikey);
-        builder.addPropertyValue("apikey", apikey);
+        builder.addPropertyValue("apiKey", apikey);
 
         String name = DatatypeHelper.safeTrim(config.getAttributeNS(null, "name"));
         log.debug("Setting Authy Application Name to: {}", name);

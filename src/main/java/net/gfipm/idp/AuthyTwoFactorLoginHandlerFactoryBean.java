@@ -66,10 +66,10 @@ public class AuthyTwoFactorLoginHandlerFactoryBean extends AbstractLoginHandlerF
     private String apihost = null;
 
     // Authy attribute getter/setters
-    public String getApiHost(){
+    public String getAuthyApiURL(){
         return apihost;
     }
-    public void setApiHost(String s){
+    public void setAuthyApiURL(String s){
         apihost = s;
     }
     public String getApiKey(){

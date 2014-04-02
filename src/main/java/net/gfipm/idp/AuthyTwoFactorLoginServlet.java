@@ -168,11 +168,13 @@ public class AuthyTwoFactorLoginServlet extends HttpServlet {
 
         if ( token != null )
         {
+            log.debug("Found authy token {}, attempting to verify...", token);
            // Let's make sure we have an authyId.
            String authyId = (String)request.getSession().getAttribute(AUTHY_USER);
 
            if (authyId == null) {
-              // Some sort of error situation, Dropback and try again.
+              // authyId not found
+              log.error("No authyId found in  the session");
               redirectToLoginPage(request, response);
               return;
            }
@@ -217,7 +219,7 @@ public class AuthyTwoFactorLoginServlet extends HttpServlet {
                    // Store user.getId() in your database
                    // authyId = user.getId();
 
-               request.setAttribute(AUTHY_USER, authyId);
+               request.getSession().setAttribute(AUTHY_USER, authyId);
                redirectToAuthyPage(request, response);
                return;
             } catch (LoginException e) {
