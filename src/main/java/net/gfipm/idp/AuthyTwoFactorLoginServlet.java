@@ -176,18 +176,16 @@ public class AuthyTwoFactorLoginServlet extends HttpServlet {
               redirectToLoginPage(request, response);
               return;
            }
+           AuthyApiClient client = new AuthyApiClient("fde43f39f773e1a686830f4fa26d0b4a");
+           Tokens         tokens = client.getTokens();
+           Token          verification = tokens.verify(1816856, token);
 
-            // Token verification = tokens.verify(authyId, token);
+            if(verification.isOk()) {
+               log.debug("Temporarily auto-accepting any 2nd factor token received: {}", token);
+             } else {
+                 throw new ServletException("Authy token verification error"); 
+             }
 
-            // if(verification.isOk()) {
-            //   token was valid, user can sign in, simply return...
-            // } else {
-            //   token is invalid, 
-            //   Ask for another token, pass some sort of error information for display on the page.
-            //     redirectToAuthyPage(request, response);
-            // }
-
-            log.debug("Temporarily auto-accepting any 2nd factor token received: {}", token);
             Subject userSubject = (Subject)request.getSession().getAttribute(USER_SUBJECT_KEY);
             request.setAttribute(LoginHandler.SUBJECT_KEY, userSubject);
             request.setAttribute(LoginHandler.AUTHENTICATION_METHOD_KEY, authenticationMethod);
@@ -208,8 +206,8 @@ public class AuthyTwoFactorLoginServlet extends HttpServlet {
 
               log.debug("Username/password verified, redirecting to Authy 2nd factor");
 
-              String authyId = "temp";
               // Using the username, get the users Authy Id
+              String authyId = "1816856";
               // TBD.
                 
               // If no AuthyId Exists - Dynamically register the user.
